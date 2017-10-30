@@ -1,6 +1,6 @@
 (ns clj-chorebot.config)
 
-(def db_url (or (System/getenv "DATABASE_URL")
+(def db-url (or (System/getenv "DATABASE_URL")
                 "postgresql://localhost:5432/chores"))
 
 (def slack_token (or (System/getenv "SLACK_API_TOKEN")

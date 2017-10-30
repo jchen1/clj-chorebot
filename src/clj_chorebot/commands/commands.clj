@@ -1,8 +1,10 @@
 (ns clj-chorebot.commands.commands
+  (:require [clj-chorebot.config :as config])
   (:require [clj-chorebot.slack :as slack])
   (:require [clj-chorebot.models.user :as user])
   (:require [clj-chorebot.models.chore :as chore])
-  (:require [clj-chorebot.models.chorelog :as chorelog]))
+  (:require [clj-chorebot.models.chorelog :as chorelog])
+  (:require [clojure.core.match :refer [match]]))
 
 (def help_msg (str
   "Available commands:\n"
@@ -32,9 +34,17 @@
   "prints info about the given chore"
   [channel [chore_name] user]
   (let [{:keys [completed_at chore_order]} (chorelog/get_last chore_name)]
-    (slack/post channel (str "<@" (:slack_handle (user/get_next_user chore_order)) "> is responsible for " chore_name ". (last completed " completed_at ")"))))
+    (slack/post channel (str "@" (:slack_handle (user/get_next_user chore_order)) " is responsible for " chore_name ". (last completed " completed_at ")"))))
 
 ; todo
 (defn finished "" [] ())
-(defn remind "" [] ())
 
+(defn remind
+  "reminds user about chore"
+  [channel [chore_name] user]
+  (if (= (or chore_name "all") "all")
+    () ; todo grab all chores
+    (let [{:keys [description completed_at chore_order]} (chorelog/get_last chore_name)]
+      (if (nil? description)
+        (slack/post channel (str chore_name " is not a recognized chore."))
+        (slack/post config/chores_channel (str "<@" (:slack_handle (user/get_next_user chore_order)) ">, please " description))))))

@@ -3,7 +3,7 @@
               [clj-chorebot.config :as config]))
 
   (defn migrated? []
-    (-> (sql/query config/db_url
+    (-> (sql/query config/db-url
                    [(str "select count(*) from information_schema.tables "
                          "where table_name='migrations'")])
         first :count pos?))
@@ -11,7 +11,7 @@
   (defn migrate []
     (when (not (migrated?))
       (print "Creating database structure...") (flush)
-      (sql/db-do-commands config/db_url
+      (sql/db-do-commands config/db-url
                           [(sql/create-table-ddl
                             :users
                             [[:id :serial "PRIMARY KEY"]
@@ -40,5 +40,5 @@
                              [:name :varchar "NOT NULL"]
                              [:completed_at :timestamp "NOT NULL" "DEFAULT CURRENT_TIMESTAMP"]])
                            ])
-      (sql/insert! config/db_url :migrations {:name "init"})
+      (sql/insert! config/db-url :migrations {:name "init"})
       (println " done")))

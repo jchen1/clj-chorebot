@@ -2,6 +2,7 @@
   (:require [clj-chorebot.config :as config]
             [clj-chorebot.models.user :as user]
             [clj-chorebot.models.chore :as chore]
+            [clj-chorebot.util.sql-utils :as sql-utils]
             [clojure.java.jdbc :as jdbc]
             [java-jdbc.sql :as sql]))
 
@@ -11,18 +12,14 @@
   (let [chore_obj (chore/get_by_name chore_name)
         user_obj (user/get_by_slack_id slack_id)]
     (do
-      (jdbc/insert! config/db_url :chorelogs {:user_id (:id user_obj) :chore_id (:id chore_obj)})
+      (jdbc/insert! config/db-url :chorelogs {:user_id (:id user_obj) :chore_id (:id chore_obj)})
       (:slack_handle (user/get_next_user (:chore_order user_obj)))
       )))
 
-(defn limit
-  [n query]
-  (conj (rest query) (str (first query) " LIMIT " n)))
-
 (defn get_last
-  "gets last completed by + ts"
+  "gets last completed by + ts + description"
   [chore_name]
-  (first (jdbc/query config/db_url (limit 1 (sql/select [:cl.completed_at :u.* ] {:chorelogs :cl}
+  (first (jdbc/query config/db-url (sql-utils/limit 1 (sql/select [:cl.completed_at :u.* :c.description] {:chorelogs :cl}
     (sql/join {:chores :c} {:cl.chore_id :c.id})
     (sql/join {:users :u} {:cl.user_id :u.id})
     (sql/where {:name chore_name})
