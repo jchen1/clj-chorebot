@@ -4,7 +4,7 @@
             [java-jdbc.sql :as sql]))
 
 (defn create
-  "Creates a user" ; todo auto-increment chore_order
+  "Creates a user"
   [user]
   (jdbc/with-db-transaction [t-con config/db-url]
     (let

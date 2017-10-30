@@ -37,7 +37,17 @@
     (slack/post channel (str "@" (:slack_handle (user/get_next_user chore_order)) " is responsible for " chore_name ". (last completed " completed_at ")"))))
 
 ; todo
-(defn finished "" [] ())
+(defn
+  finished
+  "marks chore as completed"
+  [channel [chore_name] slack_id]
+  (if (= (:slack_id (chorelog/get_next chore_name)) slack_id)
+    (let [next_handle (chorelog/complete_chore chore_name slack_id)]
+      (do
+        (slack/post config/chores_channel (str "<@" next_handle "> is now responsible for " chore_name "."))
+;        (slack/set_topic config/chores_channel) ;TODO
+        ))
+    (slack/post channel (str chore_name " is not a recognized chore or it's not your turn"))))
 
 (defn remind
   "reminds user about chore"
