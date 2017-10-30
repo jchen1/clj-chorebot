@@ -10,10 +10,10 @@
   "complete a chore. returns next user's slack handle"
   [chore_name slack_id]
   (let [chore_obj (chore/get_by_name chore_name)
-        user_obj (user/get_by_slack_id slack_id)]
+        user_obj (user/get-by-slack-id slack_id)]
     (do
       (jdbc/insert! config/db-url :chorelogs {:user_id (:id user_obj) :chore_id (:id chore_obj)})
-      (:slack_handle (user/get_next_user (:chore_order user_obj)))
+      (:slack_handle (user/get-next-user (:chore_order user_obj)))
       )))
 
 (defn get_last
@@ -28,4 +28,4 @@
 (defn get_next
   "gets next user"
   [chore_name]
-  (user/get_next_user (:chore_order (:user (get_last chore_name)))))
+  (user/get-next-user (:chore_order (:user (get_last chore_name)))))

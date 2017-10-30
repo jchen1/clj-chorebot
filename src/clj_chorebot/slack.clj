@@ -3,25 +3,32 @@
             [clj-slack.users :as slack.users]
             [clj-slack.channels :as slack.channels]
             [clj-slack.chat :as slack.chat]
+            [clj-slack.im :as slack.im]
             [slack-rtm.core :as slack-rtm]))
 
 
-(def api_conn {:api-url "https://slack.com/api" :token config/slack_token})
-(def channel_cache (get (slack.channels/list api_conn) :channels))
+(def api-conn {:api-url "https://slack.com/api" :token config/slack_token})
+(def channel-cache (:channels (slack.channels/list api-conn)))
+(def dm-cache (:ims (slack.im/list api-conn)))
+(def user-cache (:members (slack.users/list api-conn)))
 
-(defn find_first
+(defn find-first
   [coll f]
   (first (filter f coll)))
 
-(defn init_rtm
+(defn init-rtm
   "init slack rtm"
   []
   (slack-rtm/connect config/slack_token))
 
-(defn get_channel_id
+(defn get-channel-id
   "takes channel name or id and returns channel id"
   [channel_name]
-  (or (get (find_first channel_cache (fn [c] (= (get c :name) channel_name))) :id) channel_name))
+  (or (:id (find-first channel-cache (fn [c] (= (:name c) channel_name)))) channel_name))
+
+(defn get-dm-for-user
+  [user_id]
+  (:id (find-first dm-cache (fn [i] (= (:user i) user_id)))))
 
 (defn subscribe
   ""
@@ -32,9 +39,14 @@
 (defn post
   ""
   [channel_name msg]
-  (slack.chat/post-message api_conn (get_channel_id channel_name) msg {:as_user "true"}))
+  (slack.chat/post-message api-conn (get-channel-id channel_name) msg {:as_user "true"}))
 
 (defn set_topic
   ""
   [channel_name topic]
-  (slack.channels/set-topic api_conn (get_channel_id channel_name) topic))
+  (slack.channels/set-topic api-conn (get-channel-id channel_name) topic))
+
+(defn get-user-by-handle
+  ""
+  [handle]
+  (find-first user-cache (fn [u] (= (:name u) handle))))

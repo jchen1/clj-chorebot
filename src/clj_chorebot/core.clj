@@ -7,6 +7,6 @@
 (defn -main []
   (do
     (migrations/migrate)
-    (let [rtm_conn (slack/init_rtm)]
-      (slack/subscribe rtm_conn :message handler/handler))
+    (let [rtm-conn (slack/init-rtm)]
+      (slack/subscribe rtm-conn :message handler/handler))
     (loop [] () (recur))))

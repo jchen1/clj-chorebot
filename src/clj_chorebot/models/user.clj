@@ -11,7 +11,7 @@
       [max_order (or (:chore_order (first (jdbc/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"]))) -1)]
       (jdbc/insert! t-con :users (assoc user :chore_order (+ 1 max_order))))))
 
-(defn decrement_chore_orders_above_n
+(defn decrement-chore-orders-above-n
   [t-con n]
   (jdbc/execute! t-con ["UPDATE users SET chore_order = chore_order - 1 WHERE chore_order > ?" n]))
 
@@ -23,22 +23,22 @@
       (do
         (jdbc/delete! t-con :users ["slack_handle=?" slack_handle])
         (if user
-          (decrement_chore_orders_above_n t-con (get user :chore_order))
+          (decrement-chore-orders-above-n t-con (:chore_order user))
           (println str (slack_handle " is not a user")))))))
 
-(defn set_admin
+(defn set-admin
   [slack_handle is_admin]
   (jdbc/update! config/db-url :users {:is_admin is_admin} (sql/where {:slack_handle slack_handle})))
 
-(defn get_by_username
+(defn get-by-username
   [slack_handle]
   (first (jdbc/find-by-keys config/db-url :users {:slack_handle slack_handle})))
 
-(defn get_by_slack_id
+(defn get-by-slack-id
   [slack_id]
   (first (jdbc/find-by-keys config/db-url :users {:slack_id slack_id})))
 
-(defn get_next_user
+(defn get-next-user
   "gets next user in chore sequence"
   [chore_order]
   (jdbc/with-db-transaction [t-con config/db-url]

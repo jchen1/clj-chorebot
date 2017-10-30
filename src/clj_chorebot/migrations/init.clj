@@ -17,7 +17,6 @@
                             [[:id :serial "PRIMARY KEY"]
                              [:chore_order :integer "NOT NULL" "UNIQUE"]
                              [:is_admin :boolean "NOT NULL" "DEFAULT FALSE"]
-                             [:slack_dm_channel :varchar "NOT NULL" "UNIQUE"]
                              [:slack_handle :varchar "NOT NULL" "UNIQUE"]
                              [:slack_id :varchar "NOT NULL" "UNIQUE"]]
                             )
