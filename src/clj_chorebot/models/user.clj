@@ -1,0 +1,41 @@
+(ns clj-chorebot.models.user
+  (:require [clj-chorebot.config :as config]
+            [clojure.java.jdbc :as jdbc]
+            [java-jdbc.sql :as sql]))
+
+(defn create
+  "Creates a user" ; todo auto-increment chore_order
+  [user]
+  (jdbc/with-db-transaction [t-con config/db_url]
+    (let
+      [max_order (or (get (first (jdbc/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"])) :chore_order) -1)]
+      (jdbc/insert! t-con :users (assoc user :chore_order (+ 1 max_order))))))
+
+(defn decrement_chore_orders_above_n
+  [t-con n]
+  (jdbc/execute! t-con ["UPDATE users SET chore_order = chore_order - 1 WHERE chore_order > ?" n]))
+
+(defn remove
+  "Removes a user, and decrements chore_order"
+  [slack_handle]
+  (jdbc/with-db-transaction [t-con config/db_url]
+    (let [[user] (jdbc/find-by-keys t-con :users {:slack_handle slack_handle})]
+      (do
+        (jdbc/delete! t-con :users ["slack_handle=?" slack_handle])
+        (if user
+          (decrement_chore_orders_above_n t-con (get user :chore_order))
+          (println str (slack_handle " is not a user")))))))
+
+(defn set_admin
+  [slack_handle is_admin]
+  (jdbc/update! config/db_url :users {:is_admin is_admin} (sql/where {:slack_handle slack_handle})))
+
+(defn get_by_username
+  [slack_handle]
+  (first (jdbc/find-by-keys config/db_url :users {:slack_handle slack_handle})))
+
+(defn get_by_slack_id
+  [slack_id]
+  (first (jdbc/find-by-keys config/db_url :users {:slack_id slack_id})))
+
+; TODO (get_next slack_id)
