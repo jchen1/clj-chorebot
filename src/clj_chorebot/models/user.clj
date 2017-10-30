@@ -8,7 +8,7 @@
   [user]
   (jdbc/with-db-transaction [t-con config/db_url]
     (let
-      [max_order (or (get (first (jdbc/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"])) :chore_order) -1)]
+      [max_order (or (:chore_order (first (jdbc/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"]))) -1)]
       (jdbc/insert! t-con :users (assoc user :chore_order (+ 1 max_order))))))
 
 (defn decrement_chore_orders_above_n
@@ -38,4 +38,10 @@
   [slack_id]
   (first (jdbc/find-by-keys config/db_url :users {:slack_id slack_id})))
 
-; TODO (get_next slack_id)
+(defn get_next_user
+  "gets next user in chore sequence"
+  [chore_order]
+  (jdbc/with-db-transaction [t-con config/db_url]
+    (let [max_chore_order (:count (first (jdbc/query t-con (sql/select "count(*)" :users))))
+          next_order (mod (+ 1 chore_order) max_chore_order)]
+        (first (jdbc/find-by-keys t-con :users {:chore_order next_order})))))

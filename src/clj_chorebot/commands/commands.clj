@@ -1,7 +1,8 @@
 (ns clj-chorebot.commands.commands
   (:require [clj-chorebot.slack :as slack])
   (:require [clj-chorebot.models.user :as user])
-  (:require [clj-chorebot.models.chore :as chore]))
+  (:require [clj-chorebot.models.chore :as chore])
+  (:require [clj-chorebot.models.chorelog :as chorelog]))
 
 (def help_msg (str
   "Available commands:\n"
@@ -27,12 +28,11 @@
       (str help_msg "\nAdmin commands:\n" admin_help_msg)
       help_msg)))
 
-; todo (info "${name} is responsible for ${chore}. (last completed ${date})")
 (defn info
   "prints info about the given chore"
-  [channel [chore] user]
-  (let [description (get (chore/get_by_name chore) :description)]
-    (slack/post channel description)))
+  [channel [chore_name] user]
+  (let [{:keys [completed_at chore_order]} (chorelog/get_last chore_name)]
+    (slack/post channel (str "<@" (:slack_handle (user/get_next_user chore_order)) "> is responsible for " chore_name ". (last completed " completed_at ")"))))
 
 ; todo
 (defn finished "" [] ())
