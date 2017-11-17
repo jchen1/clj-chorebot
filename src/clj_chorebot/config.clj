@@ -7,5 +7,5 @@
                      "xoxb-263654194611-vZj02eznoiSj4TjzEGmmG00g"))
 
 (def chores_channel (if (= (System/getenv "PROD") "true")
-                        "chores"
-                        "clj-chorebot-test"))
+                      "chores"
+                      "clj-chorebot-test"))

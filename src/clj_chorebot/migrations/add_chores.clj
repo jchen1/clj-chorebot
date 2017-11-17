@@ -14,7 +14,7 @@
   (when (not (migrated?))
     (print "Adding dishes/trash chores...") (flush)
     (sql/with-db-transaction [t-con config/db-url]
-      (sql/insert! t-con :chores {:name "dishes" :description "wash and put away the dishes."})
-      (sql/insert! t-con :chores {:name "trash" :description "take out the trash and boxes."})
-      (sql/insert! t-con :migrations {:name migration_name}))
+                             (sql/insert! t-con :chores {:name "dishes" :description "wash and put away the dishes."})
+                             (sql/insert! t-con :chores {:name "trash" :description "take out the trash and boxes."})
+                             (sql/insert! t-con :migrations {:name migration_name}))
     (println " done")))
