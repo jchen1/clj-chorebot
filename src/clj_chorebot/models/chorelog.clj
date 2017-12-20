@@ -2,9 +2,8 @@
   (:require [clj-chorebot.config :as config]
             [clj-chorebot.models.user :as user]
             [clj-chorebot.models.chore :as chore]
-            [clj-chorebot.util.sql-utils :as sql-utils]
-            [clojure.java.jdbc :as jdbc]
-            [java-jdbc.sql :as sql]))
+            [clj-chorebot.util.sql :as sql]
+            [clojure.java.jdbc :as jdbc]))
 
 (defn complete_chore
   "complete a chore. returns next user's slack handle"
@@ -16,10 +15,15 @@
       (:slack_handle (user/get-next-user (:chore_order user_obj)))
       )))
 
+(defn get-last-all []
+  (jdbc/query config/db-url (sql/select [:*] {:chorelogs :c}
+                                        (sql/where {:completed_at ^:subquery (sql/select "max(completed_at)" {:chorelogs :cl}
+                                                                              (sql/where {:cl.id "c.id"}))}))))
+
 (defn get_last
   "gets last completed by + ts + description"
   [chore_name]
-  (first (jdbc/query config/db-url (sql-utils/limit 1 (sql/select [:cl.completed_at :u.* :c.description] {:chorelogs :cl}
+  (first (jdbc/query config/db-url (sql/limit 1 (sql/select [:cl.completed_at :u.* :c.description] {:chorelogs :cl}
                                                                   (sql/join {:chores :c} {:cl.chore_id :c.id})
                                                                   (sql/join {:users :u} {:cl.user_id :u.id})
                                                                   (sql/where {:name chore_name})

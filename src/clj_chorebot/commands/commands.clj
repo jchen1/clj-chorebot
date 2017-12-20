@@ -33,33 +33,33 @@
 
 (defn info
   "prints info about the given chore"
-  [channel [chore_name] user]
-  (if-let [{:keys [completed_at chore_order]} (chorelog/get_last chore_name)]
-    (slack/post channel (str "@" (:slack_handle (user/get-next-user chore_order)) " is responsible for " chore_name ". (last completed " completed_at ")"))
-    (slack/post channel (str "Unrecognized chore: " chore_name "."))))
+  [channel [chore-name] user]
+  (if (= chore-name "all")
+    (let [])
+    (if-let [{:keys [completed_at chore-order]} (chorelog/get_last chore-name)]
+      (slack/post channel (str "@" (:slack_handle (user/get-next-user chore-order)) " is responsible for " chore-name ". (last completed " completed_at ")"))
+      (slack/post channel (str "Unrecognized chore: " chore-name ".")))))
 
 ; todo
 (defn
   finished
   "marks chore as completed"
-  [channel [chore_name] slack_id]
-  (if (= (:slack_id (chorelog/get_next chore_name)) slack_id)
-    (let [next_handle (chorelog/complete_chore chore_name slack_id)]
+  [channel [chore-name] slack_id]
+  (if (= (:slack_id (chorelog/get_next chore-name)) slack_id)
+    (let [next_handle (chorelog/complete_chore chore-name slack_id)]
       (do
-        (slack/post config/chores_channel (str "<@" next_handle "> is now responsible for " chore_name "."))
-        ;        (slack/set_topic config/chores_channel) ;TODO
-        ))
-    (slack/post channel (str chore_name " is not a recognized chore or it's not your turn"))))
+        (slack/post config/chores_channel (str "<@" next_handle "> is now responsible for " chore-name "."))))
+    (slack/post channel (str chore-name " is not a recognized chore or it's not your turn"))))
 
 (defn remind
   "reminds user about chore"
-  [channel [chore_name] user]
-  (if (= (or chore_name "all") "all")
+  [channel [chore-name] user]
+  (if (= (or chore-name "all") "all")
     ()                                                      ; todo grab all chores
-    (let [{:keys [description completed_at chore_order]} (chorelog/get_last chore_name)]
+    (let [{:keys [description completed_at chore-order]} (chorelog/get_last chore-name)]
       (if (nil? description)
-        (slack/post channel (str chore_name " is not a recognized chore."))
-        (slack/post config/chores_channel (str "<@" (:slack_handle (user/get-next-user chore_order)) ">, please " description))))))
+        (slack/post channel (str chore-name " is not a recognized chore."))
+        (slack/post config/chores_channel (str "<@" (:slack_handle (user/get-next-user chore-order)) ">, please " description))))))
 
 (defn admin-wrapper
   ""
@@ -69,7 +69,7 @@
       (f channel args user)
       (slack/post channel "Not authorized."))))
 
-(def normalize-username
+(defn normalize-username
   ""
   [username]
   (if (string/starts-with? username "@")
@@ -80,7 +80,6 @@
                 (fn [channel [handle] _]
                   (if-let [user_map (slack/get-user-by-handle (normalize-username handle))]
                     (do
-                      (println user_map)
                       (user/create {:slack_handle (:name user_map) :slack_id (:id user_map)})
                       (slack/post channel (str "Added user @" handle " to the chore rotation.")))
                     (slack/post channel (str "User @" (normalize-username handle) " is not a recognized user."))))))
@@ -104,11 +103,11 @@
                   (slack/post channel (str "Set user @" handle " to normal user."))))))
 
 (def add-chore (admin-wrapper
-                 (fn [channel [chore_name] _]
+                 (fn [channel [chore-name] _]
                    ()                                       ; todo
                    )))
 
 (def remove-chore (admin-wrapper
-                 (fn [channel [chore_name] _]
+                 (fn [channel [chore-name] _]
                    ()                                       ; todo
                    )))

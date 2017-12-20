@@ -2,7 +2,7 @@
   (:require [clj-chorebot.config :as config]
             [clojure.java.jdbc :as jdbc]
             [java-jdbc.sql :as sql]
-            [clj-chorebot.util.sql-utils :as sql-utils]))
+            [clj-chorebot.util.sql :as sql-utils]))
 
 (defn create
   "Creates a chore"
