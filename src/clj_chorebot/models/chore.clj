@@ -1,19 +1,11 @@
 (ns clj-chorebot.models.chore
   (:require [clj-chorebot.config :as config]
             [clojure.java.jdbc :as jdbc]
-            [java-jdbc.sql :as sql]
-            [clj-chorebot.util.sql :as sql-utils]))
+            [clj-chorebot.util.sql :as sql]))
 
-(defn create
-  "Creates a chore"
-  [name description]
-  (jdbc/insert! config/db-url :chores {:name name :description description}))
+(defn get-remove-sql
+  [chore-name] (sql/delete :chores (sql/where `(= :name ~chore-name))))
 
-(defn remove
-  "Removes a chore"
-  [name]
-  (jdbc/delete! config/db-url :chores (sql/where {:name name})))
-
-(defn get_by_name
+(defn get-by-name
   [name]
   (first (jdbc/find-by-keys config/db-url :chores {:name name})))

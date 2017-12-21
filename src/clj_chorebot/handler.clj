@@ -5,13 +5,10 @@
             [clojure.string :as string]
             [clojure.core.match :refer [match]]))
 
-(def ignored_msg_types #{"bot_message", "channel_topic"})
-
 (defn handler
   [{:keys [channel user subtype text bot_id topic]}]
   "handle slack message"
   (do
-    ; (println (str channel " " text " " subtype))
     (if (or (nil? bot_id) (not (nil? topic)))               ;ignore if topic is set or bot message
       (let [words (string/split text #" ")
             command (first words)
@@ -25,5 +22,6 @@
                ["remove-user"] (commands/remove-user channel args user)
                ["promote"] (commands/promote channel args user)
                ["demote"] (commands/demote channel args user)
-               :else (println (str "bad command: " command " " args))))
-      )))
+               ["add-chore"] (commands/add-chore channel args user)
+               ["remove-chore"] (commands/remove-chore channel args user)
+               :else (println (str "bad command: " command " " args)))))))

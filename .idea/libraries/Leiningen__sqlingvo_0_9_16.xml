@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: sqlingvo:0.9.16">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/sqlingvo/sqlingvo/0.9.16/sqlingvo-0.9.16.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

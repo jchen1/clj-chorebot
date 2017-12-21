@@ -1,7 +1,8 @@
 (ns clj-chorebot.core
   (:require [clj-chorebot.migrations :as migrations]
             [clj-chorebot.slack :as slack]
-            [clj-chorebot.handler :as handler])
+            [clj-chorebot.handler :as handler]
+            [clojure.core.async :as async])
   (:gen-class))
 
 (def conn (atom {}))
@@ -12,8 +13,8 @@
   (:conn @conn))
 
 (defn go []
-  (when-not (:sub @conn)
-    (swap! conn assoc :sub (slack/subscribe (get-conn) :message handler/handler)))
+  (async/unsub-all (:events-publication (get-conn)))
+  (swap! conn assoc :sub (slack/subscribe (get-conn) :message handler/handler))
   (:sub @conn))
 
 (defn -main []

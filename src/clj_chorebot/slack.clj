@@ -7,7 +7,7 @@
             [slack-rtm.core :as slack-rtm]))
 
 
-(def api-conn {:api-url "https://slack.com/api" :token config/slack_token})
+(def api-conn {:api-url "https://slack.com/api" :token config/slack-token})
 (def channel-cache (:channels (slack.channels/list api-conn)))
 (def dm-cache (:ims (slack.im/list api-conn)))
 (def user-cache (:members (slack.users/list api-conn)))
@@ -19,7 +19,7 @@
 (defn init-rtm
   "init slack rtm"
   []
-  (slack-rtm/connect config/slack_token))
+  (slack-rtm/connect config/slack-token))
 
 (defn get-channel-id
   "takes channel name or id and returns channel id"

@@ -1,7 +1,7 @@
 (ns clj-chorebot.models.user
   (:require [clj-chorebot.config :as config]
             [clojure.java.jdbc :as jdbc]
-            [java-jdbc.sql :as sql]))
+            [clj-chorebot.util.sql :as sql]))
 
 (defn create
   "Creates a user"
@@ -17,31 +17,32 @@
 
 (defn remove
   "Removes a user, and decrements chore_order"
-  [slack_handle]
+  [slack-handle]
   (jdbc/with-db-transaction [t-con config/db-url]
-                            (let [[user] (jdbc/find-by-keys t-con :users {:slack_handle slack_handle})]
-                              (do
-                                (jdbc/delete! t-con :users ["slack_handle=?" slack_handle])
-                                (if user
-                                  (decrement-chore-orders-above-n t-con (:chore_order user))
-                                  (println str (slack_handle " is not a user")))))))
+                            (let [[user] (jdbc/find-by-keys t-con :users {:slack_handle slack-handle})]
+                              (when user
+                                (jdbc/delete! t-con :users ["slack_handle=?" slack-handle])
+                                (decrement-chore-orders-above-n t-con (:chore_order user))
+                                user))))
 
 (defn set-admin
-  [slack_handle is_admin]
-  (jdbc/update! config/db-url :users {:is_admin is_admin} (sql/where {:slack_handle slack_handle})))
+  [slack-handle is-admin]
+  (< 0 (first (jdbc/execute! config/db-url
+                             (sql/update :users {:is-admin is-admin}
+                                         (sql/where `(= :slack-handle ~slack-handle)))))))
 
 (defn get-by-username
-  [slack_handle]
-  (first (jdbc/find-by-keys config/db-url :users {:slack_handle slack_handle})))
+  [slack-handle]
+  (first (jdbc/find-by-keys config/db-url :users {:slack_handle slack-handle})))
 
 (defn get-by-slack-id
-  [slack_id]
-  (first (jdbc/find-by-keys config/db-url :users {:slack_id slack_id})))
+  [slack-id]
+  (first (jdbc/find-by-keys config/db-url :users {:slack_id slack-id})))
 
 (defn get-next-user
   "gets next user in chore sequence"
-  [chore_order]
+  [chore-order]
   (jdbc/with-db-transaction [t-con config/db-url]
-                            (let [max_chore_order (:count (first (jdbc/query t-con (sql/select "count(*)" :users))))
-                                  next_order (mod (+ 1 (or chore_order 0)) max_chore_order)]
-                              (first (jdbc/find-by-keys t-con :users {:chore_order next_order})))))
+                            (let [max-chore-order (:count (first (jdbc/query t-con (sql/select [`(count :*)] (sql/from :users)))))
+                                  next-order (mod (+ 1 (or chore-order 0)) max-chore-order)]
+                              (first (jdbc/find-by-keys t-con :users {:chore_order next-order})))))
