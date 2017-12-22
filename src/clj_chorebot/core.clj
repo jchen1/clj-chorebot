@@ -21,7 +21,6 @@
 (defn -main []
   (do
     (migrations/migrate)
-    (let [rtm-conn (slack/init-rtm)]
-      (slack/subscribe rtm-conn :message handler/handler))
-    (println (format "initialized: posting to #%s" config/chores-channel))
-    (loop [] () (recur))))
+    (let [c (go)]
+      (println (format "initialized: posting to #%s" config/chores-channel))
+      (loop [] (Thread/sleep 1000) (recur)))))
