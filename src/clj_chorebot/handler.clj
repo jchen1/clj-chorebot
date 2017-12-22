@@ -11,17 +11,19 @@
   (do
     (if (or (nil? bot_id) (not (nil? topic)))               ;ignore if topic is set or bot message
       (let [words (string/split text #" ")
-            command (first words)
-            args (rest words)]
-        (match [command]
-               ["info"] (commands/info channel args user)
-               ["help"] (commands/help channel args user)
-               ["remind"] (commands/remind channel args user)
-               ["finished"] (commands/finished channel args user)
-               ["add-user"] (commands/add-user channel args user)
-               ["remove-user"] (commands/remove-user channel args user)
-               ["promote"] (commands/promote channel args user)
-               ["demote"] (commands/demote channel args user)
-               ["add-chore"] (commands/add-chore channel args user)
-               ["remove-chore"] (commands/remove-chore channel args user)
-               :else (println (str "bad command: " command " " args)))))))
+            args (rest words)
+            command (match [(first words)]
+                           ["info"] commands/info
+                           ["help"] commands/help
+                           ["remind"] commands/remind
+                           ["finished"] commands/finished
+                           ["add-user"] commands/add-user
+                           ["remove-user"] commands/remove-user
+                           ["promote"] commands/promote
+                           ["demote"] commands/demote
+                           ["add-chore"] commands/add-chore
+                           ["remove-chore"] commands/remove-chore
+                           ["list-users"] commands/list-users)]
+        (if command
+          (command channel args user)
+          (println (format "bad command: %s %s" (first words) args)))))))

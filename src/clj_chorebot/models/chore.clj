@@ -8,4 +8,4 @@
 
 (defn get-by-name
   [name]
-  (first (jdbc/find-by-keys config/db-url :chores {:name name})))
+  (first (sql/find-by-keys config/db-url :chores {:name name})))

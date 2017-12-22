@@ -19,20 +19,22 @@
                 "`info [chore] (optional)`: list chores and their owners`\n"
                 "`help`: print this message"))
 
-(def admin-help-msg (str
-                      "`add-user [username]`: add a user to the chore rotation\n"
-                      "`remove-user [username]`: remove a user from the chore rotation\n"
-                      "`add-chore [chore]`: add a chore to the chore rotation\n"
-                      "`remove-chore [chore]`: remove a chore from the chore rotation\n"
-                      "`promote [username]`: promote a user to admin\n"
-                      "`demote [username]`: demote a user"))
+(def admin-help-msg
+  (str/join "\n"
+            ["`add-user [username]`: add a user to the chore rotation"
+             "`remove-user [username]`: remove a user from the chore rotation"
+             "`add-chore [chore]`: add a chore to the chore rotation"
+             "`remove-chore [chore]`: remove a chore from the chore rotation"
+             "`promote [username]`: promote a user to admin"
+             "`demote [username]`: demote a user"
+             "`list-users`: list all users and their type"]))
 
 (defn help
   "prints help info"
   [channel args user]
   (slack/post
     channel
-    (if (:is_admin (user/get-by-slack-id user))
+    (if (:is-admin (user/get-by-slack-id user))
       (format "%s\n\nAdmin commands:\n%s" help-msg admin-help-msg)
       help-msg)))
 
@@ -42,21 +44,21 @@
   (let [chore-name (or chore-name "all")
         chore-info (if (= chore-name "all") (chorelog/get-last-all) (chorelog/get-last chore-name))]
     (if (not-empty chore-info)
-      (slack/post channel (str/join "\n" (map (fn [{:keys [completed_at chore_order name]}]
+      (slack/post channel (str/join "\n" (map (fn [{:keys [completed-at chore-order name]}]
                                                 (format "@%s is reponsible for %s. (last completed %s)"
-                                                        (:slack_handle (user/get-next-user chore_order))
+                                                        (:slack-handle (user/get-next-user chore-order))
                                                         name
-                                                        completed_at)) chore-info)))
+                                                        completed-at)) chore-info)))
       (slack/post channel (format-error "%s isn't a chore" chore-name)))))
 
 (defn
   finished
   "marks chore as completed"
-  [channel [chore-name] slack_id]
-  (if (= (:slack_id (chorelog/get-next chore-name)) slack_id)
-    (let [next_handle (chorelog/complete_chore chore-name slack_id)]
+  [channel [chore-name] slack-id]
+  (if (= (:slack-id (chorelog/get-next chore-name)) slack-id)
+    (let [next-handle (chorelog/complete-chore chore-name slack-id)]
       (do
-        (slack/post config/chores-channel (str "<@" next_handle "> is now responsible for " chore-name "."))))
+        (slack/post config/chores-channel (str "<@" next-handle "> is now responsible for " chore-name "."))))
     (slack/post channel (str chore-name " is not a recognized chore or it's not your turn"))))
 
 (defn remind
@@ -65,8 +67,8 @@
   (if chore-name
     (let [chore-info (if (= chore-name "all") (chorelog/get-last-all) (chorelog/get-last chore-name))]
       (if (not-empty chore-info)
-        (slack/post channel (str/join "\n" (map (fn [{:keys [description completed_at chore_order]}]
-                                                  (format "<@%s>, please %s" (:slack_handle (user/get-next-user chore_order)) description)) chore-info)))
+        (slack/post channel (str/join "\n" (map (fn [{:keys [description completed-at chore-order]}]
+                                                  (format "<@%s>, please %s" (:slack-handle (user/get-next-user chore-order)) description)) chore-info)))
         ((slack/post channel (format-error "%s is not a recognized chore." chore-name)))))
     (slack/post channel (format-error "`remind` requires a chore name or `all`"))))
 
@@ -74,7 +76,7 @@
   ""
   [f]
   (fn [channel args user]
-    (if (:is_admin (user/get-by-slack-id user))
+    (if (:is-admin (user/get-by-slack-id user))
       (f channel args user)
       (slack/post channel "Not authorized."))))
 
@@ -90,7 +92,7 @@
                   (if-let [handle (normalize-username handle)]
                     (if-let [{:keys [name id]} (slack/get-user-by-handle handle)]
                       (do
-                        (user/create {:slack_handle name :slack_id id})
+                        (user/create {:slack-handle name :slack-id id})
                         (slack/post channel (format "Added @%s to the chore rotation" handle)))
                       (slack/post channel (format-error "@%s is not a valid user" handle)))
                     (slack/post channel (format-error "`add-user` requires a username"))))))
@@ -121,8 +123,7 @@
 
 (def add-chore (admin-wrapper
                  (fn [channel [chore-name & description] _]
-                   (let [description (str/join " " description)
-                         _ (println chore-name description)]
+                   (let [description (str/join " " description)]
                      (if (and chore-name description)
                        (if (chore-service/add chore-name description)
                          (slack/post channel (format "Added chore %s" chore-name))
@@ -134,3 +135,11 @@
                    (if (chore-service/remove chore-name)
                      (slack/post channel (format "Removed chore %s" chore-name))
                      (slack/post channel (format-error "%s is not a chore" chore-name))))))
+
+(def list-users (admin-wrapper
+                  (fn [channel _ _]
+                    (->>
+                      (user/get-all)
+                      (map #(format "@%s: %s" (:slack-handle %) (if (:is-admin %) "admin" "user")))
+                      (str/join "\n")
+                      (slack/post channel)))))

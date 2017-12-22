@@ -8,8 +8,8 @@
   [user]
   (jdbc/with-db-transaction [t-con config/db-url]
                             (let
-                              [max_order (or (:chore_order (first (jdbc/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"]))) -1)]
-                              (jdbc/insert! t-con :users (assoc user :chore_order (+ 1 max_order))))))
+                              [max-order (or (:chore-order (first (sql/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"]))) -1)]
+                              (sql/insert! t-con :users (assoc user :chore-order (+ 1 max-order))))))
 
 (defn decrement-chore-orders-above-n
   [t-con n]
@@ -19,7 +19,7 @@
   "Removes a user, and decrements chore_order"
   [slack-handle]
   (jdbc/with-db-transaction [t-con config/db-url]
-                            (let [[user] (jdbc/find-by-keys t-con :users {:slack_handle slack-handle})]
+                            (let [[user] (sql/find-by-keys t-con :users {:slack-handle slack-handle})]
                               (when user
                                 (jdbc/delete! t-con :users ["slack_handle=?" slack-handle])
                                 (decrement-chore-orders-above-n t-con (:chore_order user))
@@ -33,16 +33,19 @@
 
 (defn get-by-username
   [slack-handle]
-  (first (jdbc/find-by-keys config/db-url :users {:slack_handle slack-handle})))
+  (first (sql/find-by-keys config/db-url :users {:slack-handle slack-handle})))
+
+(defn get-all []
+  (sql/query config/db-url (sql/select [:slack-handle :is-admin] (sql/from :users))))
 
 (defn get-by-slack-id
   [slack-id]
-  (first (jdbc/find-by-keys config/db-url :users {:slack_id slack-id})))
+  (first (sql/find-by-keys config/db-url :users {:slack-id slack-id})))
 
 (defn get-next-user
   "gets next user in chore sequence"
   [chore-order]
   (jdbc/with-db-transaction [t-con config/db-url]
-                            (let [max-chore-order (:count (first (jdbc/query t-con (sql/select [`(count :*)] (sql/from :users)))))
+                            (let [max-chore-order (:count (first (sql/query t-con (sql/select [`(count :*)] (sql/from :users)))))
                                   next-order (mod (+ 1 (or chore-order 0)) max-chore-order)]
-                              (first (jdbc/find-by-keys t-con :users {:chore_order next-order})))))
+                              (first (sql/find-by-keys t-con :users {:chore-order next-order})))))

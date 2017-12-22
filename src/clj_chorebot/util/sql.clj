@@ -1,8 +1,38 @@
 (ns clj-chorebot.util.sql
   (:require [sqlingvo.core :as sql]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [clojure.java.jdbc :as jdbc]))
 
-(def my-db (sql/db :postgresql {:sql-name #(str/replace (name %) "-" "_")}) )
+(defn replace-dashes [s] (str/replace (name s) "-" "_"))
+(defn replace-underscores [s] (str/replace (name s) "_" "-"))
+
+(def my-db (sql/db :postgresql {:sql-name replace-dashes}))
+
+(defn query [& params]
+  (->> params
+       (apply jdbc/query)
+       (map #(->> %
+                  (map (fn [[k v]] [(keyword (replace-underscores k)) v]))
+                  (into {})))))
+
+(defn find-by-keys
+  ([db table cols] (find-by-keys db table cols {}))
+  ([db table cols opts]
+    (let [cols (->> cols
+                    (map (fn [[k v]] [(keyword (replace-dashes k)) v]))
+                    (into {}))
+          objs (jdbc/find-by-keys db table cols opts)]
+      (map #(->> %
+                 (map (fn [[k v]] [(keyword (replace-underscores k)) v]))
+                 (into {})) objs))))
+
+(defn insert!
+  ([db table row] (insert! db table row {}))
+  ([db table row opts]
+    (let [row (->> row
+                   (map (fn [[k v]] [(keyword (replace-dashes k)) v]))
+                   (into {}))]
+      (jdbc/insert! db table row opts))))
 
 (defn inner-select [& params] (apply sql/select my-db params))
 
@@ -14,7 +44,6 @@
 (defn drop-materialized-view [& params] (sql/sql (apply sql/drop-materialized-view my-db params)))
 (defn refresh-materialized-view [& params] (sql/sql (apply sql/refresh-materialized-view my-db params)))
 (defn truncate [& params] (sql/sql (apply sql/truncate my-db params)))
-
 (defn insert [& params] (sql/sql (apply sql/insert my-db params)))
 (defn update [& params] (sql/sql (apply sql/update my-db params)))
 (defn values [& params] (sql/sql (apply sql/values my-db params)))
@@ -26,7 +55,6 @@
 (defn cascade [& params] (apply sql/cascade params))
 (defn check [& params] (apply sql/check params))
 (defn column [& params] (apply sql/column params))
-
 (defn columns [& params] (apply sql/columns params))
 (defn continue-identity [& params] (apply sql/continue-identity params))
 (defn concurrently [& params] (apply sql/concurrently params))
