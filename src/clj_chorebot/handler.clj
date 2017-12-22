@@ -12,6 +12,7 @@
     (if (or (nil? bot_id) (not (nil? topic)))               ;ignore if topic is set or bot message
       (let [words (string/split text #" ")
             args (rest words)
+            _ (println args)
             command (match [(string/lower-case (first words))]
                            ["info"] commands/info
                            ["help"] commands/help

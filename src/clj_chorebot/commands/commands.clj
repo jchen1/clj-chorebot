@@ -83,8 +83,10 @@
 (defn normalize-username
   ""
   [username]
-  (if (string/starts-with? username "@")
-    (subs username 1)
+  (if (string/starts-with? username "<")                    ;@name in slack goes to <@id>
+    (:name (slack/find-first
+             slack/user-cache
+             #(= (:id %) (string/replace username #"[@<>]" ""))))
     username))
 
 (def add-user (admin-wrapper
@@ -94,7 +96,7 @@
                       (do
                         (user/create {:slack-handle name :slack-id id})
                         (slack/post channel (format "Added @%s to the chore rotation" handle)))
-                      (slack/post channel (format-error "@%s is not a valid user" handle)))
+                      (slack/post channel (format-error "@%s is not a valid slack user" handle)))
                     (slack/post channel (format-error "`add-user` requires a username"))))))
 
 (def remove-user (admin-wrapper
@@ -102,7 +104,7 @@
                      (if-let [handle (normalize-username handle)]
                        (if (user/remove handle)
                          (slack/post channel (format "Removed @%s from the chore rotation" handle))
-                         (slack/post channel (format-error "@%s is not a valid user" handle)))
+                         (slack/post channel (format-error "@%s is not a chorebot user" handle)))
                        (slack/post channel (format-error "`add-user` requires a username"))))))
 
 (def promote (admin-wrapper
@@ -110,7 +112,7 @@
                  (if-let [handle (normalize-username handle)]
                    (if (user/set-admin handle true)
                      (slack/post channel (format "Added admin to @%s" handle))
-                     (slack/post channel (format-error "@%s is not a valid user" handle)))
+                     (slack/post channel (format-error "@%s is not a chorebot user" handle)))
                    (slack/post channel (format-error "`promote` requires a username"))))))
 
 (def demote (admin-wrapper
@@ -118,7 +120,7 @@
                 (if-let [handle (normalize-username handle)]
                   (if (user/set-admin handle false)
                     (slack/post channel (format "Removed admin from @%s" handle))
-                    (slack/post channel (format-error "@%s is not a valid user" handle)))
+                    (slack/post channel (format-error "@%s is not a chorebot user" handle)))
                   (slack/post channel (format-error "`demote` requires a username"))))))
 
 (def add-chore (admin-wrapper
