@@ -4,6 +4,7 @@
             [clj-chorebot.handler :as handler]
             [clojure.core.async :as async]
             [clj-chorebot.config :as config]
+            [clojure.java.shell :refer [sh]]
             [environ.core :refer [env]])
   (:gen-class))
 
