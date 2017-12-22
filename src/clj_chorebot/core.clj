@@ -2,7 +2,8 @@
   (:require [clj-chorebot.migrations :as migrations]
             [clj-chorebot.slack :as slack]
             [clj-chorebot.handler :as handler]
-            [clojure.core.async :as async])
+            [clojure.core.async :as async]
+            [clj-chorebot.config :as config])
   (:gen-class))
 
 (def conn (atom {}))
@@ -22,4 +23,5 @@
     (migrations/migrate)
     (let [rtm-conn (slack/init-rtm)]
       (slack/subscribe rtm-conn :message handler/handler))
+    (println (format "initialized: posting to #%s" config/chores-channel))
     (loop [] () (recur))))

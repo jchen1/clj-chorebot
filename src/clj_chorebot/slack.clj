@@ -23,28 +23,28 @@
 
 (defn get-channel-id
   "takes channel name or id and returns channel id"
-  [channel_name]
-  (or (:id (find-first channel-cache (fn [c] (= (:name c) channel_name)))) channel_name))
+  [channel-name]
+  (or (:id (find-first channel-cache (fn [c] (= (:name c) channel-name)))) channel-name))
 
 (defn get-dm-for-user
-  [user_id]
-  (:id (find-first dm-cache (fn [i] (= (:user i) user_id)))))
+  [user-id]
+  (:id (find-first dm-cache (fn [i] (= (:user i) user-id)))))
 
 (defn subscribe
   ""
-  [rtm_conn type handler]
-  (let [events_publication (:events-publication rtm_conn)]
-    (slack-rtm/sub-to-event events_publication type handler)))
+  [rtm-conn type handler]
+  (let [events-publication (:events-publication rtm-conn)]
+    (slack-rtm/sub-to-event events-publication type handler)))
 
 (defn post
   ""
-  [channel_name msg]
-  (slack.chat/post-message api-conn (get-channel-id channel_name) msg {:as_user "true"}))
+  [channel-name msg]
+  (slack.chat/post-message api-conn (get-channel-id channel-name) msg {:as_user "true"}))
 
-(defn set_topic
+(defn set-topic
   ""
-  [channel_name topic]
-  (slack.channels/set-topic api-conn (get-channel-id channel_name) topic))
+  [channel-name topic]
+  (slack.channels/set-topic api-conn (get-channel-id channel-name) topic))
 
 (defn get-user-by-handle
   ""

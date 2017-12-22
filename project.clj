@@ -11,7 +11,8 @@
                  [org.julienxx/clj-slack "0.5.5"]
                  [org.clojure/core.match "0.3.0-alpha5"]
                  [org.clojure/spec.alpha "0.1.143"]
-                 [sqlingvo "0.9.16"]]
+                 [sqlingvo "0.9.16"]
+                 [environ "1.1.0"]]
   :main ^:skip-aot clj-chorebot.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
