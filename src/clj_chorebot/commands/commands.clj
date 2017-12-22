@@ -12,12 +12,13 @@
 (defn format-error [format-str & params]
   (apply format (str "Error: " format-str) params))
 
-(def help-msg (str
-                "Available commands:\n"
-                "`finished [[chore]|all]`: mark a task as completed\n"
-                "`remind [[chore]|all]`: remind the owner of a task\n"
-                "`info [chore] (optional)`: list chores and their owners`\n"
-                "`help`: print this message"))
+(def help-msg
+  (str/join "\n"
+            ["Available commands:\n"
+             "`finished [[chore]|all]`: mark a task as completed\n"
+             "`remind [[chore]|all]`: remind the owner of a task\n"
+             "`info [chore] (optional)`: list chores and their owners\n"
+             "`help`: print this message"]))
 
 (def admin-help-msg
   (str/join "\n"
