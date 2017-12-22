@@ -22,7 +22,7 @@
                           (sql/join :users.id :chorelogs.user-id)
                           (sql/where `(= :chorelogs.completed-at ~(sql/inner-select ['(max :completed-at)]
                                                                 (sql/from (sql/as :chorelogs :cl))
-                                                                (sql/where `(= :chorelogs.id :cl.id)))))
+                                                                (sql/where `(= :chorelogs.chore-id :cl.chore-id)))))
                           (sql/order-by (sql/desc :completed-at)))))
 
 (defn get-last

@@ -13,6 +13,6 @@
                  [org.clojure/spec.alpha "0.1.143"]
                  [sqlingvo "0.9.16"]
                  [environ "1.1.0"]]
-  :main ^:skip-aot clj-chorebot.core
+  :main clj-chorebot.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
