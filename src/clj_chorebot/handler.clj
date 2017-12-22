@@ -12,7 +12,7 @@
     (if (or (nil? bot_id) (not (nil? topic)))               ;ignore if topic is set or bot message
       (let [words (string/split text #" ")
             args (rest words)
-            command (match [(first words)]
+            command (match [(string/lower-case (first words))]
                            ["info"] commands/info
                            ["help"] commands/help
                            ["remind"] commands/remind
@@ -23,7 +23,6 @@
                            ["demote"] commands/demote
                            ["add-chore"] commands/add-chore
                            ["remove-chore"] commands/remove-chore
-                           ["list-users"] commands/list-users)]
-        (if command
-          (command channel args user)
-          (println (format "bad command: %s %s" (first words) args)))))))
+                           ["list-users"] commands/list-users
+                           :else nil)]
+        (when command (command channel args user))))))

@@ -6,10 +6,20 @@
 (defn create
   "Creates a user"
   [user]
-  (jdbc/with-db-transaction [t-con config/db-url]
-                            (let
-                              [max-order (or (:chore-order (first (sql/query t-con ["SELECT chore_order FROM users WHERE chore_order = (SELECT max(chore_order) FROM users)"]))) -1)]
-                              (sql/insert! t-con :users (assoc user :chore-order (+ 1 max-order))))))
+  (jdbc/with-db-transaction
+    [t-con config/db-url]
+    (let
+      [max-order (or (->> (sql/select
+                            [:chore-order]
+                            (sql/from :users)
+                            (sql/where `(= :chore-order ~(sql/inner-select
+                                                           [`(max :chore-order)]
+                                                           (sql/from :users)))))
+                          (sql/query t-con)
+                          (first)
+                          :chore-order)
+                     -1)]
+      (sql/insert! t-con :users (assoc user :chore-order (+ 1 max-order))))))
 
 (defn decrement-chore-orders-above-n
   [t-con n]
@@ -21,7 +31,7 @@
   (jdbc/with-db-transaction [t-con config/db-url]
                             (let [[user] (sql/find-by-keys t-con :users {:slack-handle slack-handle})]
                               (when user
-                                (jdbc/delete! t-con :users ["slack_handle=?" slack-handle])
+                                (jdbc/execute! t-con (sql/delete :users (sql/where `(= :slack-handle ~slack-handle))))
                                 (decrement-chore-orders-above-n t-con (:chore_order user))
                                 user))))
 
