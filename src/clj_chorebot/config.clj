@@ -28,4 +28,4 @@
                (apply sh)
                :out
                clojure.string/trim
-               #(if (empty? %) "" "*"))))
+               (#(if (empty? %) "" "*")))))
