@@ -7,9 +7,6 @@
   (spit filename (prn-str config)))
 
 (defn -main []
-  (print (format "Writing %s..." config/version-file))
-  (flush)
   (write-project-config config/version-file {:version (config/version)
                                        :git-sha (config/git-sha)})
-  (println "done")
   (System/exit 0))

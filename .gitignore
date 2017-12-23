@@ -11,4 +11,5 @@ pom.xml.asc
 .hg/
 pg/
 pg_log
+.idea/workspace.xml
 version.edn

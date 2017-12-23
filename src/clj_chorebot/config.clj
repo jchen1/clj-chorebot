@@ -19,7 +19,13 @@
 (defn version [] (env :clj-chorebot-version))
 
 (defn git-sha []
-  (->> ["git" "rev-parse" "HEAD"]
-       (apply sh)
-       :out
-       clojure.string/trim))
+  (format "%s%s"
+          (->> ["git" "rev-parse" "HEAD"]
+               (apply sh)
+               :out
+               clojure.string/trim)
+          (->> ["git" "status" "--porcelain"]
+               (apply sh)
+               :out
+               clojure.string/trim
+               #(if (empty? %) "" "*"))))
