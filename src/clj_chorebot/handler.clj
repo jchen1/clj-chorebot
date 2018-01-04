@@ -10,10 +10,9 @@
   "handle slack message"
   (do
     (if (or (nil? bot_id) (not (nil? topic)))               ;ignore if topic is set or bot message
-      (let [words (string/split text #" ")
+      (let [words (map string/lower-case (string/split text #" "))
             args (rest words)
-            _ (println args)
-            command (match [(string/lower-case (first words))]
+            command (match [(first words)]
                            ["info"] commands/info
                            ["help"] commands/help
                            ["remind"] commands/remind

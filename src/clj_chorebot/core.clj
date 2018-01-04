@@ -25,6 +25,5 @@
     (let [c (go)
           {:keys [version git-sha]} (read-string (slurp config/version-file))]
       (println (format "initialized: posting to #%s" config/chores-channel))
-      ;(when (env :is-prod) (slack/post config/chores-channel "Deployed!"))
       (slack/post config/chores-channel (format "Deployed version %s (%s) to %s." version git-sha (if (env :is-prod) "prod" "dev")))
       (loop [] (Thread/sleep 1000) (recur)))))

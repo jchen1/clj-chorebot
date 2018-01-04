@@ -28,18 +28,18 @@
 (defn get-last
   "gets last completed by + ts + description"
   [chore-name]
-  (sql/query config/db-url (sql/select [:chorelogs.completed-at :users.* :chores.description :chores.name]
-                                        (sql/from :chorelogs)
-                                        (sql/join :chores.id :chorelogs.chore-id)
-                                        (sql/join :users.id :chorelogs.user-id)
-                                        (sql/where `(= :name ~chore-name))
-                                        (sql/order-by (sql/desc :completed-at))
-                                        (sql/limit 1))))
+  (first (sql/query config/db-url (sql/select [:chorelogs.completed-at :users.* :chores.description :chores.name]
+                                              (sql/from :chorelogs)
+                                              (sql/join :chores.id :chorelogs.chore-id)
+                                              (sql/join :users.id :chorelogs.user-id)
+                                              (sql/where `(= :name ~chore-name))
+                                              (sql/order-by (sql/desc :completed-at))
+                                              (sql/limit 1)))))
 
 (defn get-next
   "gets next user"
   [chore-name]
-  (user/get-next-user (:chore-order (:user (get-last chore-name)))))
+  (when-let [last (get-last chore-name)] (user/get-next-user (:chore-order last))))
 
 (defn get-remove-sql
   [chore-id]

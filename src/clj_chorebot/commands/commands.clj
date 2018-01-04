@@ -14,10 +14,10 @@
 
 (def help-msg
   (str/join "\n"
-            ["Available commands:\n"
-             "`finished [[chore]|all]`: mark a task as completed\n"
-             "`remind [[chore]|all]`: remind the owner of a task\n"
-             "`info [chore] (optional)`: list chores and their owners\n"
+            ["Available commands:"
+             "`finished [[chore]|all]`: mark a task as completed"
+             "`remind [[chore]|all]`: remind the owner of a task"
+             "`info [chore] (optional)`: list chores and their owners"
              "`help`: print this message"]))
 
 (def admin-help-msg
@@ -46,21 +46,21 @@
         chore-info (if (= chore-name "all") (chorelog/get-last-all) (chorelog/get-last chore-name))]
     (if (not-empty chore-info)
       (slack/post channel (str/join "\n" (map (fn [{:keys [completed-at chore-order name]}]
-                                                (format "@%s is reponsible for %s. (last completed %s)"
+                                                (format "@%s is responsible for %s. (last completed %s)"
                                                         (:slack-handle (user/get-next-user chore-order))
                                                         name
                                                         completed-at)) chore-info)))
       (slack/post channel (format-error "%s isn't a chore" chore-name)))))
 
-(defn
-  finished
+(defn finished
   "marks chore as completed"
   [channel [chore-name] slack-id]
-  (if (= (:slack-id (chorelog/get-next chore-name)) slack-id)
-    (let [next-handle (chorelog/complete-chore chore-name slack-id)]
-      (do
-        (slack/post config/chores-channel (str "<@" next-handle "> is now responsible for " chore-name "."))))
-    (slack/post channel (str chore-name " is not a recognized chore or it's not your turn"))))
+  (if-let [next-user (chorelog/get-next chore-name)]
+    (if (= (:slack-id next-user) slack-id)
+      (let [next-handle (chorelog/complete-chore chore-name slack-id)]
+        (slack/post config/chores-channel (format "Thanks! <@%s> is now responsible for %s." next-handle chore-name)))
+      (slack/post channel (format-error "It's not your turn to do %s." chore-name)))
+    (slack/post channel (format-error "`%s` is not a valid chore name." chore-name))))
 
 (defn remind
   "reminds user about chore"
