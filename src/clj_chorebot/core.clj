@@ -4,7 +4,8 @@
             [clj-chorebot.handler :as handler]
             [clojure.core.async :as async]
             [clj-chorebot.config :as config]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [clj-chorebot.models.user :as user])
   (:gen-class))
 
 (def conn (atom {}))
@@ -23,7 +24,9 @@
   (do
     (migrations/migrate)
     (let [c (go)
-          {:keys [version git-sha]} (read-string (slurp config/version-file))]
+          {:keys [version git-sha]} (read-string (slurp config/version-file))
+          admins (map :slack-handle (user/get-admins))
+          msg (format "Deployed version %s (%s) to %s." version git-sha (if (env :is-prod) "prod" "dev"))]
       (println (format "initialized: posting to #%s" config/chores-channel))
-      (slack/post config/chores-channel (format "Deployed version %s (%s) to %s." version git-sha (if (env :is-prod) "prod" "dev")))
+      (run! #(slack/post (:id (slack/get-user-by-handle %)) msg) admins)
       (loop [] (Thread/sleep 1000) (recur)))))

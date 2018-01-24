@@ -48,6 +48,11 @@
 (defn get-all []
   (sql/query config/db-url (sql/select [:slack-handle :is-admin] (sql/from :users))))
 
+(defn get-admins []
+  (sql/query config/db-url (sql/select [:slack-handle]
+                                       (sql/from :users)
+                                       (sql/where `(= :is-admin true)))))
+
 (defn get-by-slack-id
   [slack-id]
   (first (sql/find-by-keys config/db-url :users {:slack-id slack-id})))

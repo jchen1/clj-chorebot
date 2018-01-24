@@ -68,8 +68,8 @@
   (if chore-name
     (let [chore-info (if (= chore-name "all") (chorelog/get-last-all) (chorelog/get-last chore-name))]
       (if (not-empty chore-info)
-        (slack/post channel (str/join "\n" (map (fn [{:keys [description completed-at chore-order]}]
-                                                  (format "<@%s>, please %s" (:slack-handle (user/get-next-user chore-order)) description)) chore-info)))
+        (slack/post config/chores-channel (str/join "\n" (map (fn [{:keys [description completed-at chore-order]}]
+                                                                (format "<@%s>, please %s" (:slack-handle (user/get-next-user chore-order)) description)) chore-info)))
         ((slack/post channel (format-error "%s is not a recognized chore." chore-name)))))
     (slack/post channel (format-error "`remind` requires a chore name or `all`"))))
 
