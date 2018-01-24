@@ -57,8 +57,11 @@
   [channel [chore-name] slack-id]
   (if-let [next-user (chorelog/get-next chore-name)]
     (if (= (:slack-id next-user) slack-id)
-      (let [next-handle (chorelog/complete-chore chore-name slack-id)]
-        (slack/post config/chores-channel (format "Thanks! <@%s> is now responsible for %s." next-handle chore-name)))
+      (let [next-handle (chorelog/complete-chore chore-name slack-id)
+            all-chores (map #(do {:slack-handle (:slack-handle (user/get-next-user (:chore-order %)))
+                                  :chore-name (:name %)}) (chorelog/get-last-all))]
+        (slack/post config/chores-channel (format "Thanks! <@%s> is now responsible for %s." next-handle chore-name))
+        (slack/set-topic config/chores-channel (str/join " | " (map #(format "%s: %s" (:chore-name %) (:slack-handle %)) all-chores))))
       (slack/post channel (format-error "It's not your turn to do %s." chore-name)))
     (slack/post channel (format-error "`%s` is not a valid chore name." chore-name))))
 
@@ -66,8 +69,8 @@
   "reminds user about chore"
   [channel [chore-name] user]
   (if chore-name
-    (let [chore-info (if (= chore-name "all") (chorelog/get-last-all) (chorelog/get-last chore-name))]
-      (if (not-empty chore-info)
+    (let [chore-info (if (= chore-name "all") (chorelog/get-last-all) [(chorelog/get-last chore-name)])]
+      (if (not-empty (filter some? chore-info))
         (slack/post config/chores-channel (str/join "\n" (map (fn [{:keys [description completed-at chore-order]}]
                                                                 (format "<@%s>, please %s" (:slack-handle (user/get-next-user chore-order)) description)) chore-info)))
         ((slack/post channel (format-error "%s is not a recognized chore." chore-name)))))
