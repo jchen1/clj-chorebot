@@ -6,7 +6,7 @@
             [clj-chorebot.models.chorelog :as chorelog]
             [clj-chorebot.models.user :as user]))
 
-(def migration-name "add-users")
+(def migration-name "add-topic")
 
 (defn migrated? []
   (-> (sql/query config/db-url
