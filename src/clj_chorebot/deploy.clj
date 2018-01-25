@@ -8,5 +8,6 @@
 
 (defn -main []
   (write-project-config config/version-file {:version (config/version)
-                                       :git-sha (config/git-sha)})
+                                             :git-sha (config/git-sha)
+                                             :first-deploy? true})
   (System/exit 0))

@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fec86ee4-61e6-46a9-99c7-1499aef1e38d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/clj_chorebot/migrations/add_topic.clj" afterPath="$PROJECT_DIR$/src/clj_chorebot/migrations/add_topic.clj" />
+      <change beforePath="$PROJECT_DIR$/src/clj_chorebot/core.clj" afterPath="$PROJECT_DIR$/src/clj_chorebot/core.clj" />
+      <change beforePath="$PROJECT_DIR$/src/clj_chorebot/deploy.clj" afterPath="$PROJECT_DIR$/src/clj_chorebot/deploy.clj" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,21 +20,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5641026">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="core.clj" pinned="false" current-in-tab="false">
+          <file leaf-file-name="core.clj" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/clj_chorebot/core.clj">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="deploy.clj" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/clj_chorebot/deploy.clj">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+                <state relative-caret-position="285">
+                  <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -52,7 +43,7 @@
           <file leaf-file-name="chorelog.clj" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/clj_chorebot/models/chorelog.clj">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="213">
+                <state relative-caret-position="26">
                   <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="18" />
                   <folding />
                 </state>
@@ -69,11 +60,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="add_topic.clj" pinned="false" current-in-tab="true">
+          <file leaf-file-name="add_topic.clj" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/clj_chorebot/migrations/add_topic.clj">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+                <state relative-caret-position="374">
+                  <caret line="22" column="61" lean-forward="false" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
                   <folding />
                 </state>
               </provider>
@@ -163,11 +154,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="slack.clj" pinned="false" current-in-tab="true">
+          <file leaf-file-name="slack.clj" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/clj_chorebot/slack.clj">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="250">
                   <caret line="34" column="21" lean-forward="false" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="deploy.clj" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/clj_chorebot/deploy.clj">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -230,16 +231,16 @@
         <option value="$PROJECT_DIR$/project.clj" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/scripts/compile_and_deploy.sh" />
-        <option value="$PROJECT_DIR$/src/clj_chorebot/deploy.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/config.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/models/chorelog.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/handler.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/models/user.clj" />
-        <option value="$PROJECT_DIR$/src/clj_chorebot/core.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/slack.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/commands/commands.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/migrations.clj" />
         <option value="$PROJECT_DIR$/src/clj_chorebot/migrations/add_topic.clj" />
+        <option value="$PROJECT_DIR$/src/clj_chorebot/deploy.clj" />
+        <option value="$PROJECT_DIR$/src/clj_chorebot/core.clj" />
       </list>
     </option>
   </component>
@@ -339,7 +340,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="ReplState" timestamp="1516756827556">{:repl-history {:ide [], :local [{:command &quot;(clj-chorebot.models.chore/remove \&quot;herp\&quot;)&quot;, :offset 41, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete :chores (sql/where '(= :name name)))&quot;, :offset 48, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete :chores (sql/where '(= :name \&quot;hello\&quot;)))&quot;, :offset 51, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/execute! config/db-url (sql/delete :chores (sql/where '(= :name \&quot;hello\&quot;))))&quot;, :offset 81, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/execute! config/db-url (sql/delete :chores (sql/where '(= :name name))))&quot;, :offset 78, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/execute! config/db-url (sql/delete :chores (sql/where '(= :name \&quot;one\&quot;))))&quot;, :offset 79, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chore/remove \&quot;asdf\&quot;)&quot;, :offset 41, :ns &quot;clj-chorebot.core&quot;} {:command &quot;'(chore-name 1 2)&quot;, :offset 17, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chore/remove \&quot;dishes\&quot;)&quot;, :offset 43, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chore/remove \&quot;asf\&quot;)&quot;, :offset 40, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/remove \&quot;asdf\&quot;)&quot;, :offset 51, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/remove \&quot;dishes\&quot;)&quot;, :offset 53, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :u.* :c.description] (sql/from (sql/as :chorelogs :cl)))&quot;, :offset 86, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :u.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id))&quot;, :offset 125, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :user.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :user.id :cl.user-id))&quot;, :offset 160, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :user.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :user.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at)))&quot;, :offset 232, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:cl.completed-at :user.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :user.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at))))&quot;, :offset 259, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:cl.completed-at :users.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :users.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at))))&quot;, :offset 261, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:cl.completed-at :users.* :chores.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :users.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at))))&quot;, :offset 262, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-last \&quot;trash\&quot;)&quot;, :offset 47, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select ['(max :completed-at) :cl.id]\n                  (sql/from (sql/as :chorelogs :cl))\n                  (sql/where `(= :chorelogs.id :cl.id)))&quot;, :offset 151, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/inner-select ['(max :completed-at)]\n                  (sql/from (sql/as :chorelogs :cl))\n                  (sql/where `(= :chorelogs.id :cl.id)))&quot;, :offset 150, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(let [[chore-name :or [\&quot;all\&quot;]] []])&quot;, :offset 35, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(let [[chore-name :or [\&quot;all\&quot;]] []] chore-name)&quot;, :offset 46, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(let [[chore-name] []] chore-name)&quot;, :offset 34, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.user/get-next-user 0)&quot;, :offset 42, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.user/get-next-user 1)&quot;, :offset 42, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;@jeff\&quot; true)&quot;, :offset 29, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;jeff\&quot; false)&quot;, :offset 29, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;jeff1\&quot; false)&quot;, :offset 30, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;jeff\&quot; true)&quot;, :offset 28, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(&gt; 0 1)&quot;, :offset 7, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(&lt; 0 1)&quot;, :offset 7, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(&lt; 0 0)&quot;, :offset 7, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/add \&quot;test\&quot; \&quot;test description\&quot;)&quot;, :offset 67, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/remove \&quot;test\&quot;)&quot;, :offset 51, :ns &quot;clj-chorebot.core&quot;} {:command &quot;@conn&quot;, :offset 5, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(get-conn)&quot;, :offset 10, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.migrations.add-chorelogs/migrated?)&quot;, :offset 49, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(println %) {:a :b :c :d})&quot;, :offset 32, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:id] :chores))&quot;, :offset 52, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:id] :chores)&quot;, :offset 26, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:id] (sql/from :chores))&quot;, :offset 37, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(str/replace (name :id) \&quot;-\&quot; \&quot;_\&quot;)&quot;, :offset 32, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(keyword (str/replace (name :id) \&quot;-\&quot; \&quot;_\&quot;))&quot;, :offset 42, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [k v] (do [(keyword (str/replace (name k) \&quot;-\&quot; \&quot;_\&quot;)) v])) [{:id 1} {:id 2}])&quot;, :offset 84, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [[k v]] (do [(keyword (str/replace (name k) \&quot;-\&quot; \&quot;_\&quot;)) v])) [{:id 1} {:id 2}])&quot;, :offset 86, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map\n  (fn [[k v]]\n    (do\n      [(keyword\n         (str/replace\n           (name k) \&quot;-\&quot; \&quot;_\&quot;)) v]))\n  [{:id 1} {:id 2}])&quot;, :offset 120, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(-&gt;&gt; %\n           (fn [k] (println k) k)\n           (map (fn [[k v]] [(keyword (str/replace (name k) \&quot;-\&quot; \&quot;_\&quot;)) v]))\n           (fn [k] (println k) k)\n           (into {})) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 243, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:id] (sql/from :chores)))&quot;, :offset 64, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(type (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 71, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(do (println %) %) (sql/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 89, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(do (println %) %) (seq (sql/query config/db-url (sql/select [:id] (sql/from :chores)))))&quot;, :offset 95, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(do (println %) %) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 90, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [[k v]] [(name k) v]) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 96, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [[k v]] (do [(name k) v])) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 101, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(map (fn [[k v]] [(name k) v]) %) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 105, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(into {} (map (fn [[k v]] [(name k) v]) %)) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 115, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:id] (sql/from :chores)))&quot;, :offset 63, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:*] (sql/from :chores)))&quot;, :offset 62, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:*] (sql/from :chorelogs)))&quot;, :offset 65, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/find-by-keys config/db-url :users {:chore-order 0})&quot;, :offset 56, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(config/is-prod)&quot;, :offset 16, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(config/chores-channel)&quot;, :offset 23, :ns &quot;clj-chorebot.core&quot;} {:command &quot;config/chores-channel&quot;, :offset 21, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:chorelogs.completed-at :users.* :chores.description :chores.name]\n            (sql/from :chorelogs)\n            (sql/join :chores.id :chorelogs.chore-id)\n            (sql/join :users.id :chorelogs.user-id)\n            (sql/where `(= :chorelogs.completed-at ~(sql/inner-select ['(max :completed-at)]\n                                                                      (sql/from (sql/as :chorelogs :cl))\n                                                                      (sql/where `(= :chorelogs.id :cl.id)))))\n            (sql/order-by (sql/desc :completed-at)))&quot;, :offset 581, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url\n           (sql/select [:chorelogs.completed-at :users.* :chores.description :chores.name]\n                       (sql/from :chorelogs)\n                       (sql/join :chores.id :chorelogs.chore-id)\n                       (sql/join :users.id :chorelogs.user-id)\n                       (sql/where `(= :chorelogs.completed-at ~(sql/inner-select ['(max :completed-at)]\n                                                                                 (sql/from (sql/as :chorelogs :cl))\n                                                                                 (sql/where `(= :chorelogs.id :cl.id)))))\n                       (sql/order-by (sql/desc :completed-at))))&quot;, :offset 695, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-last-all)&quot;, :offset 43, :ns &quot;clj-chorebot.core&quot;} {:command &quot;-order&quot;, :offset 6} {:command &quot;(sql/select [:chore-order]\n            (sql/from :users)\n            (sql/where `(= :chore-order ~(sql/inner-select [`(max :chore-order)]\n                                                           (sql/from :users)))))&quot;, :offset 218, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/create nil)&quot;, :offset 17, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(def slack-handle \&quot;jeff\&quot;)&quot;, :offset 25, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete\n  (sql/from :users)\n  (sql/where `(= :slack-handle ~slack-handle)))&quot;, :offset 79, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete\n  :users\n  (sql/where `(= :slack-handle ~slack-handle)))&quot;, :offset 68, :ns &quot;clj-chorebot.core&quot;} {:command &quot;()&quot;, :offset 2, :ns &quot;clj-chorebot.core&quot;} {:command &quot;`()&quot;, :offset 3, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(`())&quot;, :offset 5, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(#())&quot;, :offset 5, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(#() 1 2 3)&quot;, :offset 11, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(slack/user-cache)&quot;, :offset 18, :ns &quot;clj-chorebot.core&quot;} {:command &quot;slack/user-cache&quot;, :offset 16, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(def username \&quot;&lt;@U7RK85QHZ&gt;\&quot;)&quot;, :offset 29, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(slack/find-first\n  slack/user-cache\n  #(= (:id %) (string/replace #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot; username)))&quot;, :offset 90, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(string/replace #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot; username)&quot;, :offset 37, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(string/replace username #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot;)&quot;, :offset 37, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(slack/find-first\n  slack/user-cache\n  #(= (:id %) (string/replace username #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot;)))&quot;, :offset 90, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.core/version)&quot;, :offset 27, :ns &quot;clj-chorebot.core&quot;} {:command &quot;clj-chorebot.core/version&quot;, :offset 25, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(use '[clojure.java.shell :only [sh]])\n&quot;, :offset 39, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(defn git-sha []\n  (-&gt;&gt; [\&quot;git\&quot; \&quot;rev-parse\&quot; \&quot;HEAD\&quot;]\n       (apply sh)\n       :out\n       clojure.string/trim))&quot;, :offset 109, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(git-sha)&quot;, :offset 9, :ns &quot;clj-chorebot.core&quot;} {:command &quot;core/git-sha&quot;, :offset 12, :ns &quot;clj-chorebot.core&quot;} {:command &quot;clj-chorebot.core/git-sha&quot;, :offset 25, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(config/version)&quot;, :offset 16, :ns &quot;clj-chorebot.core&quot;} {:command &quot;config/version&quot;, :offset 14, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(go)&quot;, :offset 4, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-last \&quot;dishes\&quot;)&quot;, :offset 48, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-next \&quot;dishes\&quot;)&quot;, :offset 48, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/get-by-username \&quot;chorebot\&quot;)&quot;, :offset 33, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(chorelog/complete-chore \&quot;dishes\&quot; \&quot;U3XV6AB5Z\&quot;)&quot;, :offset 46, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.core/go)&quot;, :offset 22, :ns &quot;clj-chorebot.core&quot;}], :remote []}}</component>
+  <component name="ReplState" timestamp="1516898124586">{:repl-history {:ide [], :local [{:command &quot;(clj-chorebot.models.chore/remove \&quot;herp\&quot;)&quot;, :offset 41, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete :chores (sql/where '(= :name name)))&quot;, :offset 48, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete :chores (sql/where '(= :name \&quot;hello\&quot;)))&quot;, :offset 51, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/execute! config/db-url (sql/delete :chores (sql/where '(= :name \&quot;hello\&quot;))))&quot;, :offset 81, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/execute! config/db-url (sql/delete :chores (sql/where '(= :name name))))&quot;, :offset 78, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/execute! config/db-url (sql/delete :chores (sql/where '(= :name \&quot;one\&quot;))))&quot;, :offset 79, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chore/remove \&quot;asdf\&quot;)&quot;, :offset 41, :ns &quot;clj-chorebot.core&quot;} {:command &quot;'(chore-name 1 2)&quot;, :offset 17, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chore/remove \&quot;dishes\&quot;)&quot;, :offset 43, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chore/remove \&quot;asf\&quot;)&quot;, :offset 40, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/remove \&quot;asdf\&quot;)&quot;, :offset 51, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/remove \&quot;dishes\&quot;)&quot;, :offset 53, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :u.* :c.description] (sql/from (sql/as :chorelogs :cl)))&quot;, :offset 86, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :u.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id))&quot;, :offset 125, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :user.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :user.id :cl.user-id))&quot;, :offset 160, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:cl.completed-at :user.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :user.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at)))&quot;, :offset 232, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:cl.completed-at :user.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :user.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at))))&quot;, :offset 259, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:cl.completed-at :users.* :chore.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :users.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at))))&quot;, :offset 261, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:cl.completed-at :users.* :chores.description] (sql/from (sql/as :chorelogs :cl)) (sql/join :chores.id :cl.chore-id) (sql/join :users.id :cl.user-id) (sql/where `(= :name \&quot;dishes\&quot;)) (sql/order-by (sql/desc :completed-at))))&quot;, :offset 262, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-last \&quot;trash\&quot;)&quot;, :offset 47, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select ['(max :completed-at) :cl.id]\n                  (sql/from (sql/as :chorelogs :cl))\n                  (sql/where `(= :chorelogs.id :cl.id)))&quot;, :offset 151, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/inner-select ['(max :completed-at)]\n                  (sql/from (sql/as :chorelogs :cl))\n                  (sql/where `(= :chorelogs.id :cl.id)))&quot;, :offset 150, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(let [[chore-name :or [\&quot;all\&quot;]] []])&quot;, :offset 35, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(let [[chore-name :or [\&quot;all\&quot;]] []] chore-name)&quot;, :offset 46, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(let [[chore-name] []] chore-name)&quot;, :offset 34, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.user/get-next-user 0)&quot;, :offset 42, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.user/get-next-user 1)&quot;, :offset 42, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;@jeff\&quot; true)&quot;, :offset 29, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;jeff\&quot; false)&quot;, :offset 29, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;jeff1\&quot; false)&quot;, :offset 30, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/set-admin \&quot;jeff\&quot; true)&quot;, :offset 28, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(&gt; 0 1)&quot;, :offset 7, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(&lt; 0 1)&quot;, :offset 7, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(&lt; 0 0)&quot;, :offset 7, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/add \&quot;test\&quot; \&quot;test description\&quot;)&quot;, :offset 67, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.services.chore-service/remove \&quot;test\&quot;)&quot;, :offset 51, :ns &quot;clj-chorebot.core&quot;} {:command &quot;@conn&quot;, :offset 5, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(get-conn)&quot;, :offset 10, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.migrations.add-chorelogs/migrated?)&quot;, :offset 49, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(println %) {:a :b :c :d})&quot;, :offset 32, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:id] :chores))&quot;, :offset 52, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:id] :chores)&quot;, :offset 26, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:id] (sql/from :chores))&quot;, :offset 37, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(str/replace (name :id) \&quot;-\&quot; \&quot;_\&quot;)&quot;, :offset 32, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(keyword (str/replace (name :id) \&quot;-\&quot; \&quot;_\&quot;))&quot;, :offset 42, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [k v] (do [(keyword (str/replace (name k) \&quot;-\&quot; \&quot;_\&quot;)) v])) [{:id 1} {:id 2}])&quot;, :offset 84, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [[k v]] (do [(keyword (str/replace (name k) \&quot;-\&quot; \&quot;_\&quot;)) v])) [{:id 1} {:id 2}])&quot;, :offset 86, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map\n  (fn [[k v]]\n    (do\n      [(keyword\n         (str/replace\n           (name k) \&quot;-\&quot; \&quot;_\&quot;)) v]))\n  [{:id 1} {:id 2}])&quot;, :offset 120, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(-&gt;&gt; %\n           (fn [k] (println k) k)\n           (map (fn [[k v]] [(keyword (str/replace (name k) \&quot;-\&quot; \&quot;_\&quot;)) v]))\n           (fn [k] (println k) k)\n           (into {})) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 243, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(jdbc/query config/db-url (sql/select [:id] (sql/from :chores)))&quot;, :offset 64, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(type (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 71, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(do (println %) %) (sql/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 89, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(do (println %) %) (seq (sql/query config/db-url (sql/select [:id] (sql/from :chores)))))&quot;, :offset 95, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(do (println %) %) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 90, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [[k v]] [(name k) v]) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 96, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map (fn [[k v]] (do [(name k) v])) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 101, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(map (fn [[k v]] [(name k) v]) %) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 105, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(map #(into {} (map (fn [[k v]] [(name k) v]) %)) (jdbc/query config/db-url (sql/select [:id] (sql/from :chores))))&quot;, :offset 115, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:id] (sql/from :chores)))&quot;, :offset 63, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:*] (sql/from :chores)))&quot;, :offset 62, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url (sql/select [:*] (sql/from :chorelogs)))&quot;, :offset 65, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/find-by-keys config/db-url :users {:chore-order 0})&quot;, :offset 56, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(config/is-prod)&quot;, :offset 16, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(config/chores-channel)&quot;, :offset 23, :ns &quot;clj-chorebot.core&quot;} {:command &quot;config/chores-channel&quot;, :offset 21, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/select [:chorelogs.completed-at :users.* :chores.description :chores.name]\n            (sql/from :chorelogs)\n            (sql/join :chores.id :chorelogs.chore-id)\n            (sql/join :users.id :chorelogs.user-id)\n            (sql/where `(= :chorelogs.completed-at ~(sql/inner-select ['(max :completed-at)]\n                                                                      (sql/from (sql/as :chorelogs :cl))\n                                                                      (sql/where `(= :chorelogs.id :cl.id)))))\n            (sql/order-by (sql/desc :completed-at)))&quot;, :offset 581, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/query config/db-url\n           (sql/select [:chorelogs.completed-at :users.* :chores.description :chores.name]\n                       (sql/from :chorelogs)\n                       (sql/join :chores.id :chorelogs.chore-id)\n                       (sql/join :users.id :chorelogs.user-id)\n                       (sql/where `(= :chorelogs.completed-at ~(sql/inner-select ['(max :completed-at)]\n                                                                                 (sql/from (sql/as :chorelogs :cl))\n                                                                                 (sql/where `(= :chorelogs.id :cl.id)))))\n                       (sql/order-by (sql/desc :completed-at))))&quot;, :offset 695, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-last-all)&quot;, :offset 43, :ns &quot;clj-chorebot.core&quot;} {:command &quot;-order&quot;, :offset 6} {:command &quot;(sql/select [:chore-order]\n            (sql/from :users)\n            (sql/where `(= :chore-order ~(sql/inner-select [`(max :chore-order)]\n                                                           (sql/from :users)))))&quot;, :offset 218, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/create nil)&quot;, :offset 17, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(def slack-handle \&quot;jeff\&quot;)&quot;, :offset 25, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete\n  (sql/from :users)\n  (sql/where `(= :slack-handle ~slack-handle)))&quot;, :offset 79, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(sql/delete\n  :users\n  (sql/where `(= :slack-handle ~slack-handle)))&quot;, :offset 68, :ns &quot;clj-chorebot.core&quot;} {:command &quot;()&quot;, :offset 2, :ns &quot;clj-chorebot.core&quot;} {:command &quot;`()&quot;, :offset 3, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(`())&quot;, :offset 5, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(#())&quot;, :offset 5, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(#() 1 2 3)&quot;, :offset 11, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(slack/user-cache)&quot;, :offset 18, :ns &quot;clj-chorebot.core&quot;} {:command &quot;slack/user-cache&quot;, :offset 16, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(def username \&quot;&lt;@U7RK85QHZ&gt;\&quot;)&quot;, :offset 29, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(slack/find-first\n  slack/user-cache\n  #(= (:id %) (string/replace #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot; username)))&quot;, :offset 90, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(string/replace #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot; username)&quot;, :offset 37, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(string/replace username #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot;)&quot;, :offset 37, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(slack/find-first\n  slack/user-cache\n  #(= (:id %) (string/replace username #\&quot;[@&lt;&gt;]\&quot; \&quot;\&quot;)))&quot;, :offset 90, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.core/version)&quot;, :offset 27, :ns &quot;clj-chorebot.core&quot;} {:command &quot;clj-chorebot.core/version&quot;, :offset 25, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(use '[clojure.java.shell :only [sh]])\n&quot;, :offset 39, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(defn git-sha []\n  (-&gt;&gt; [\&quot;git\&quot; \&quot;rev-parse\&quot; \&quot;HEAD\&quot;]\n       (apply sh)\n       :out\n       clojure.string/trim))&quot;, :offset 109, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(git-sha)&quot;, :offset 9, :ns &quot;clj-chorebot.core&quot;} {:command &quot;core/git-sha&quot;, :offset 12, :ns &quot;clj-chorebot.core&quot;} {:command &quot;clj-chorebot.core/git-sha&quot;, :offset 25, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(config/version)&quot;, :offset 16, :ns &quot;clj-chorebot.core&quot;} {:command &quot;config/version&quot;, :offset 14, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(go)&quot;, :offset 4, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-last \&quot;dishes\&quot;)&quot;, :offset 48, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.models.chorelog/get-next \&quot;dishes\&quot;)&quot;, :offset 48, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(user/get-by-username \&quot;chorebot\&quot;)&quot;, :offset 33, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(chorelog/complete-chore \&quot;dishes\&quot; \&quot;U3XV6AB5Z\&quot;)&quot;, :offset 46, :ns &quot;clj-chorebot.core&quot;} {:command &quot;(clj-chorebot.core/go)&quot;, :offset 22, :ns &quot;clj-chorebot.core&quot;}], :remote []}}</component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -352,7 +353,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Clojure Application.clj-chorebot.core">
+  <component name="RunManager" selected="Clojure Application.clj-chorebot.deploy">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -386,6 +387,16 @@
       <module name="clj-chorebot" />
       <setting name="path" value="" />
       <setting name="namespace" value="clj-chorebot.core" />
+      <setting name="useLein" value="false" />
+      <setting name="profiles" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="clj-chorebot.deploy" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="clj-chorebot" />
+      <setting name="path" value="" />
+      <setting name="namespace" value="clj-chorebot.deploy" />
       <setting name="useLein" value="false" />
       <setting name="profiles" value="" />
       <setting name="vmparams" value="" />
@@ -459,16 +470,18 @@
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Clojure Application.core" />
       <item index="1" class="java.lang.String" itemvalue="Clojure REPL.REPL for clj-chorebot" />
       <item index="2" class="java.lang.String" itemvalue="Clojure Application.clj-chorebot.core" />
+      <item index="3" class="java.lang.String" itemvalue="Clojure Application.clj-chorebot.deploy" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Clojure Application.clj-chorebot.core" />
-        <item index="1" class="java.lang.String" itemvalue="Clojure REPL.REPL for clj-chorebot" />
-        <item index="2" class="java.lang.String" itemvalue="Clojure Application.core" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Clojure Application.clj-chorebot.deploy" />
+        <item index="1" class="java.lang.String" itemvalue="Clojure Application.clj-chorebot.core" />
+        <item index="2" class="java.lang.String" itemvalue="Clojure REPL.REPL for clj-chorebot" />
+        <item index="3" class="java.lang.String" itemvalue="Clojure Application.core" />
       </list>
     </recent_temporary>
   </component>
@@ -484,13 +497,13 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32825205" sideWeight="0.50277776" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3089431" sideWeight="0.5095238" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="REPL" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5121951" sideWeight="0.5119048" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24085365" sideWeight="0.49464285" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24085365" sideWeight="0.49226192" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3089431" sideWeight="0.4904762" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5121951" sideWeight="0.48809522" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1404762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1404762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.4952381" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -753,14 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/config.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -825,14 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/deploy.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/clojure/clojure/1.9.0/clojure-1.9.0.jar!/clojure/core.clj">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
@@ -845,22 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="94">
           <caret line="35" column="40" lean-forward="false" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/core.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="14" lean-forward="false" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/models/chorelog.clj">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -899,8 +880,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/clj_chorebot/migrations/add_topic.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        <state relative-caret-position="374">
+          <caret line="22" column="61" lean-forward="false" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/models/chorelog.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/config.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/deploy.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="18" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/clj_chorebot/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="29" column="5" lean-forward="false" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding />
         </state>
       </provider>
