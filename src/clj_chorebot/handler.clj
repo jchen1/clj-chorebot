@@ -19,6 +19,7 @@
                            ["finished"] commands/finished
                            ["add-user"] commands/add-user
                            ["remove-user"] commands/remove-user
+                           ["set-turn"] commands/set-turn
                            ["promote"] commands/promote
                            ["demote"] commands/demote
                            ["add-chore"] commands/add-chore

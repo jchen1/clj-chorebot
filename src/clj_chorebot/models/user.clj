@@ -64,3 +64,11 @@
                             (let [max-chore-order (:count (first (sql/query t-con (sql/select [`(count :*)] (sql/from :users)))))
                                   next-order (mod (+ 1 (or chore-order 0)) max-chore-order)]
                               (first (sql/find-by-keys t-con :users {:chore-order next-order})))))
+
+(defn get-prev-user
+  "gets prev user in chore sequence"
+  [chore-order]
+  (jdbc/with-db-transaction [t-con config/db-url]
+    (let [max-chore-order (:count (first (sql/query t-con (sql/select [`(count :*)] (sql/from :users)))))
+          prev-order (mod (- (or chore-order 0) 1) max-chore-order)]
+      (first (sql/find-by-keys t-con :users {:chore-order prev-order})))))

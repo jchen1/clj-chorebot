@@ -10,9 +10,15 @@
   [chore-name slack-id]
   (let [chore-obj (chore/get-by-name chore-name)
         user-obj (user/get-by-slack-id slack-id)]
-    (do
-      (sql/insert! config/db-url :chorelogs {:user-id (:id user-obj) :chore-id (:id chore-obj)})
-      (:slack-handle (user/get-next-user (:chore-order user-obj))))))
+    (sql/insert! config/db-url :chorelogs {:user-id (:id user-obj) :chore-id (:id chore-obj)})
+    (:slack-handle (user/get-next-user (:chore-order user-obj)))))
+
+(defn set-turn
+  ""
+  [{chore-id :id :as chore} {:keys [chore-order slack-handle]}]
+  (let [{user-id :id} (user/get-prev-user chore-order)]
+    (sql/insert! config/db-url :chorelogs {:user-id user-id :chore-id chore-id})
+    slack-handle))
 
 (defn get-last-all []
   (sql/query config/db-url
