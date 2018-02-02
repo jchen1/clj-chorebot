@@ -43,7 +43,7 @@
   "prints info about the given chore"
   [channel [chore-name] user]
   (let [chore-name (or chore-name "all")
-        chore-info (if (= chore-name "all") (chorelog/get-last-all) (chorelog/get-last chore-name))]
+        chore-info (if (= chore-name "all") (chorelog/get-last-all) [(chorelog/get-last chore-name)])]
     (if (not-empty chore-info)
       (slack/post channel (str/join "\n" (map (fn [{:keys [completed-at chore-order name]}]
                                                 (format "@%s is responsible for %s. (last completed %s)"
