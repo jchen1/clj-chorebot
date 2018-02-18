@@ -14,7 +14,7 @@
 
 (defn get-conn []
   (when-not (:conn @conn)
-    (swap! conn assoc :conn (slack/init)))
+    (swap! conn assoc :conn (slack/init-rtm)))
   (:conn @conn))
 
 (defn go []
@@ -24,6 +24,7 @@
 
 (defn -main []
   (migrations/migrate)
+  (slack/init-cache)
   (let [{:keys [version git-sha first-deploy?] :as cfg} (read-string (slurp config/version-file))
         admins (map :slack-handle (user/get-admins))
         msg (format "Deployed version %s (%s) to %s." version git-sha (if (env :is-prod) "prod" "dev"))]

@@ -29,10 +29,9 @@
              #(= (:id %) (string/upper-case (string/replace username #"[@<>]" "")))))
     username))
 
-(defn init
+(defn init-rtm
   "init slack cache + rtm"
   []
-  (init-cache)
   (slack-rtm/connect config/slack-token))
 
 (defn get-channel-id
