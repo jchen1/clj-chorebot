@@ -25,7 +25,7 @@
   [username]
   (if (string/starts-with? username "<")                    ;@name in slack goes to <@id>
     (:name (slack/find-first
-             slack/user-cache
+             (:users @slack/cache)
              #(= (:id %) (string/upper-case (string/replace username #"[@<>]" "")))))
     username))
 

@@ -14,7 +14,7 @@
 
 (defn get-conn []
   (when-not (:conn @conn)
-    (swap! conn assoc :conn (slack/init-rtm)))
+    (swap! conn assoc :conn (slack/init)))
   (:conn @conn))
 
 (defn go []
