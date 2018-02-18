@@ -4,7 +4,8 @@
             [clj-slack.channels :as slack.channels]
             [clj-slack.chat :as slack.chat]
             [clj-slack.im :as slack.im]
-            [slack-rtm.core :as slack-rtm]))
+            [slack-rtm.core :as slack-rtm]
+            [clojure.string :as string]))
 
 (def cache (atom {}))
 (def api-conn {:api-url "https://slack.com/api" :token config/slack-token})
@@ -19,6 +20,14 @@
          :channels (:channels (slack.channels/list api-conn))
          :dms (:ims (slack.im/list api-conn))
          :users (:members (slack.users/list api-conn))))
+
+(defn normalize-username
+  [username]
+  (if (string/starts-with? username "<")                    ;@name in slack goes to <@id>
+    (:name (find-first
+             (:users @cache)
+             #(= (:id %) (string/upper-case (string/replace username #"[@<>]" "")))))
+    username))
 
 (defn init
   "init slack cache + rtm"
