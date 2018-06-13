@@ -29,11 +29,11 @@
   "Removes a user, and decrements chore_order"
   [slack-handle]
   (jdbc/with-db-transaction [t-con config/db-url]
-                            (let [[user] (sql/find-by-keys t-con :users {:slack-handle slack-handle})]
-                              (when user
-                                (jdbc/execute! t-con (sql/delete :users (sql/where `(= :slack-handle ~slack-handle))))
-                                (decrement-chore-orders-above-n t-con (:chore_order user))
-                                user))))
+                            (when-let [[{:keys [id] :as user}] (sql/find-by-keys t-con :users {:slack-handle slack-handle})]
+                              (jdbc/execute! t-con (sql/delete :chorelogs (sql/where `(= :user-id ~id))))
+                              (jdbc/execute! t-con (sql/delete :users (sql/where `(= :slack-handle ~slack-handle))))
+                              (decrement-chore-orders-above-n t-con (:chore_order user))
+                              user)))
 
 (defn set-admin
   [slack-handle is-admin]
